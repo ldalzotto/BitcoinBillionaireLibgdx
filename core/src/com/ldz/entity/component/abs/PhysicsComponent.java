@@ -8,6 +8,13 @@ import com.ldz.entity.component.Component;
  */
 public abstract class PhysicsComponent implements Component {
 
-    public abstract void update(Entity entity, float delta);
+    protected Entity entityReference;
+
+    public abstract void update(float delta);
+
+    @Override
+    public void setEntityReference(Entity entityReference) {
+        this.entityReference = entityReference;
+    }
 
 }

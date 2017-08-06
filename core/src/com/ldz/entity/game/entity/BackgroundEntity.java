@@ -1,8 +1,11 @@
-package com.ldz.entity;
+package com.ldz.entity.game.entity;
 
-import com.ldz.background.components.BackgroundGraphicsComponent;
+import com.badlogic.gdx.math.Vector2;
+import com.ldz.component.background.BackgroundGraphicsComponent;
+import com.ldz.entity.Entity;
 import com.ldz.entity.component.abs.InputComponent;
 import com.ldz.entity.component.abs.PhysicsComponent;
+import com.ldz.screen.IScreenSendMessage;
 
 /**
  * Created by Loic on 06/08/2017.
@@ -19,13 +22,14 @@ class Entity {
 class BackgroundGraphicsComponent {
     + backgroundTexture
 }
-
 Entity -down-> BackgroundGraphicsComponent
 @enduml
  */
 public class BackgroundEntity extends Entity {
 
-    public BackgroundEntity(InputComponent inputComponent, BackgroundGraphicsComponent graphicsComponent, PhysicsComponent physicsComponent) {
-        super(null, graphicsComponent, null);
+    public BackgroundEntity(IScreenSendMessage iScreenSendMessage, InputComponent inputComponent, BackgroundGraphicsComponent graphicsComponent, PhysicsComponent physicsComponent) {
+        super(iScreenSendMessage, null, graphicsComponent, null);
+        setPosition(new Vector2(0,0));
+        graphicsComponent.setEntityReference(this);
     }
 }

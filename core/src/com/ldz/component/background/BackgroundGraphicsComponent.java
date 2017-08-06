@@ -1,10 +1,10 @@
-package com.ldz.background.components;
+package com.ldz.component.background;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.ldz.entity.Entity;
 import com.ldz.entity.component.abs.GraphicsComponent;
+import com.ldz.entity.game.entity.BackgroundEntity;
 
 /**
  * Created by Loic on 06/08/2017.
@@ -25,7 +25,9 @@ public class BackgroundGraphicsComponent extends GraphicsComponent {
     }
 
     @Override
-    public void update(Entity entity, SpriteBatch spriteBatch, float delta) {
-        spriteBatch.draw(backgroundTexture, 0,0);
+    public void update(SpriteBatch spriteBatch, float delta) {
+        BackgroundEntity backgroundEntity = (BackgroundEntity) entityReference;
+        spriteBatch.draw(backgroundTexture, backgroundEntity.getPosition().x, backgroundEntity.getPosition().y);
     }
+
 }

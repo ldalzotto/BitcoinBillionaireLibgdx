@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Json;
 import com.ldz.entity.Entity;
 import com.ldz.entity.EntityFactory;
+import com.ldz.entity.component.Component;
 import com.ldz.screen.viewport.GlobalViewport;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 /**
  * Created by Loic on 06/08/2017.
  */
-public class MainGameScreen extends GlobalViewport implements Screen {
+public class MainGameScreen extends GlobalViewport implements Screen, IScreenSendMessage {
 
     private static final String TAG = MainGameScreen.class.getSimpleName();
 
@@ -70,9 +71,8 @@ public class MainGameScreen extends GlobalViewport implements Screen {
     }
 
     private void initializeScreen(){
-
-        entities.add(EntityFactory.getEntity(Entity.EntityType.BACKGROUND));
-
+        entities.add(EntityFactory.getEntity(Entity.EntityType.BACKGROUND, this));
+        entities.add(EntityFactory.getEntity(Entity.EntityType.SCORE, this));
     }
 
     @Override
@@ -98,5 +98,10 @@ public class MainGameScreen extends GlobalViewport implements Screen {
     @Override
     public void dispose() {
 
+    }
+
+    @Override
+    public void sendMessageToAllEntities(Component.MESSAGE messageType, String messageValue) {
+        entities.forEach(entity -> entity.sendMessage(messageType, messageValue));
     }
 }

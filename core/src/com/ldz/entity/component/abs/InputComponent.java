@@ -1,5 +1,7 @@
 package com.ldz.entity.component.abs;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.ldz.entity.Entity;
 import com.ldz.entity.component.Component;
 
@@ -8,6 +10,18 @@ import com.ldz.entity.component.Component;
  */
 public abstract class InputComponent implements Component{
 
-    public abstract void update(Entity entity, float delta);
+    protected InputProcessor inputProcessor;
+    protected Entity entityReference;
 
+    public InputComponent(InputProcessor inputProcessor) {
+        this.inputProcessor = inputProcessor;
+        Gdx.input.setInputProcessor(inputProcessor);
+    }
+
+    public abstract void update(float delta);
+
+    @Override
+    public void setEntityReference(Entity entityReference) {
+        this.entityReference = entityReference;
+    }
 }

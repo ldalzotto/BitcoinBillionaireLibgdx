@@ -1,21 +1,20 @@
 package com.ldz.entity.component.abs;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.ldz.entity.Entity;
 import com.ldz.entity.component.Component;
 
 /**
- * Created by Loic on 06/08/2017.
+ * Created by Loic on 07/08/2017.
  */
-public abstract class GraphicsComponent implements Component {
+public abstract class BehaviorComponent implements Component {
 
     protected Entity entityReference;
-
-    public abstract void update(SpriteBatch spriteBatch, float delta);
 
     @Override
     public void setEntityReference(Entity entityReference) {
         this.entityReference = entityReference;
     }
+
+    public abstract void update(float delta);
 
 }
