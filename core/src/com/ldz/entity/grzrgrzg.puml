@@ -1,0 +1,11 @@
+@startuml
+class Entity {
+    + position
+}
+class BackgroundGraphicsComponent {
+    + backgroundTexture
+}
+
+Entity -down-> BackgroundGraphicsComponent
+
+@enduml

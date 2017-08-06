@@ -1,10 +1,12 @@
 package com.ldz.entity;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.ldz.entity.component.Component;
 import com.ldz.entity.component.abs.GraphicsComponent;
 import com.ldz.entity.component.abs.InputComponent;
 import com.ldz.entity.component.abs.PhysicsComponent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +15,7 @@ import java.util.List;
 public class Entity {
 
     public enum EntityType{
-        SCORE;
+        SCORE, BACKGROUND;
     }
 
     private InputComponent inputComponent;
@@ -28,6 +30,8 @@ public class Entity {
         this.inputComponent = inputComponent;
         this.graphicsComponent = graphicsComponent;
         this.physicsComponent = physicsComponent;
+
+        componentList = new ArrayList<>();
 
         if(this.inputComponent != null){
             componentList.add(this.inputComponent);
@@ -44,7 +48,7 @@ public class Entity {
 
     }
 
-    public void update(float delta){
+    public void update(float delta, SpriteBatch spriteBatch){
         if(this.inputComponent != null){
             inputComponent.update(this, delta);
         }
@@ -54,7 +58,7 @@ public class Entity {
         }
 
         if(this.graphicsComponent != null){
-            graphicsComponent.update(this, delta);
+            graphicsComponent.update(this, spriteBatch, delta);
         }
     }
 

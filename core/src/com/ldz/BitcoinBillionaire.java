@@ -7,6 +7,17 @@ import com.ldz.screen.ScreenManager;
 
 /**
  * Created by Loic on 06/08/2017.
+ * Demonstration for PlantUML.
+ * <p>
+ * Example of use:
+ * <p>
+ * <img src="doc-files/image1.png" alt="BitcoineBillionaire main">
+ */
+/*
+ * @startuml doc-files/image1.png
+ * Bob -> Alice : hello
+ * Alice --> Bob : OK
+ * @enduml
  */
 public class BitcoinBillionaire extends Game {
 

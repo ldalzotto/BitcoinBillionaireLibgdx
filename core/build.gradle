@@ -1,11 +1,36 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        jcenter()
+    }
+    dependencies {
+        classpath 'be.jlr-home.gradle:plantumlPlugin:0.1.+'
+    }
+}
+
 apply plugin: "java"
+apply plugin: 'plantuml'
 
 sourceCompatibility = 1.8
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 sourceSets.main.java.srcDirs = [ "src/" ]
 
-
 eclipse.project {
     name = appName + "-core"
+}
+
+javadoc {
+    //is added automatically : options.addStringOption('sourcepath', project.plantuml.sourcePath)
+    //doesn't work: options.docFilesSubDirs = true
+    //do the following intead
+    doLast {
+        copy {
+            from "src/com/ldz"
+            into "$buildDir/docs/javadoc/com/ldz"
+            includes = ['**/doc-files/']
+        }
+    }
 }

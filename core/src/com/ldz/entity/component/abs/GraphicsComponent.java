@@ -1,5 +1,6 @@
 package com.ldz.entity.component.abs;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.ldz.entity.Entity;
 import com.ldz.entity.component.Component;
 
@@ -8,6 +9,6 @@ import com.ldz.entity.component.Component;
  */
 public abstract class GraphicsComponent implements Component {
 
-    public abstract void update(Entity entity, float delta);
+    public abstract void update(Entity entity, SpriteBatch spriteBatch, float delta);
 
 }

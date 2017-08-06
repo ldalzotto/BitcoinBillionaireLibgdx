@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Json;
 import com.ldz.entity.Entity;
+import com.ldz.entity.EntityFactory;
 import com.ldz.screen.viewport.GlobalViewport;
 
 import java.util.ArrayList;
@@ -24,8 +25,8 @@ public class MainGameScreen extends GlobalViewport implements Screen {
     private SpriteBatch batch = null;
     private Camera camera;
 
-    private static final int MAIN_GAME_SCREEN_HEIGHT = 800;
-    private static final int MAIN_GAME_SCREEN_WIDTH = 600;
+    private static final int MAIN_GAME_SCREEN_HEIGHT = 960;
+    private static final int MAIN_GAME_SCREEN_WIDTH = 640;
 
     private Json json;
 
@@ -35,10 +36,11 @@ public class MainGameScreen extends GlobalViewport implements Screen {
             setupViewport(MAIN_GAME_SCREEN_WIDTH, MAIN_GAME_SCREEN_HEIGHT);
 
             json = new Json();
+            batch = new SpriteBatch();
 
             entities = new ArrayList<Entity>();
-
-            //loadingAssets();
+        initializeScreen();
+        //loadingAssets();
 
     }
 
@@ -58,11 +60,19 @@ public class MainGameScreen extends GlobalViewport implements Screen {
         Gdx.gl.glViewport(0, 0, (int)VIEWPORT.getViewportWidth(), (int)VIEWPORT.getViewportHeight());
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
-        entities.forEach(entity -> entity.update(delta));
+        batch.begin();
+        entities.forEach(entity -> entity.update(delta,batch));
+        batch.end();
 
         //Entity garbage collector
         List<Entity> entitiesToDestroy = entities.stream().filter(Entity::getIsDetroyable).collect(Collectors.toList());
         entitiesToDestroy.forEach(entities::remove);
+    }
+
+    private void initializeScreen(){
+
+        entities.add(EntityFactory.getEntity(Entity.EntityType.BACKGROUND));
+
     }
 
     @Override
