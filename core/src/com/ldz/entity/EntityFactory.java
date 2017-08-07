@@ -1,11 +1,15 @@
 package com.ldz.entity;
 
 import com.ldz.component.background.BackgroundGraphicsComponent;
+import com.ldz.component.buyMenu.BuyMenuGraphicsComponent;
+import com.ldz.component.buyMenu.BuyMenuInputComponent;
+import com.ldz.component.buyMenu.BuyMenuInputProcessor;
 import com.ldz.component.score.ScoreGraphicsComponent;
 import com.ldz.component.score.ScoreInputComponent;
 import com.ldz.component.score.ScoreInputProcessor;
 import com.ldz.component.score.ScorePerSecondAccumulatorComponent;
 import com.ldz.entity.game.entity.BackgroundEntity;
+import com.ldz.entity.game.entity.BuyMenuEntity;
 import com.ldz.entity.game.entity.ScoreEntity;
 import com.ldz.screen.IScreenSendMessage;
 
@@ -25,6 +29,9 @@ public class EntityFactory {
                 break;
             case BACKGROUND:
                 entity = new BackgroundEntity(screen, null, new BackgroundGraphicsComponent(), null);
+                break;
+            case BUY_MENU:
+                entity = new BuyMenuEntity(screen, new BuyMenuInputComponent(new BuyMenuInputProcessor()), new BuyMenuGraphicsComponent(), null);
                 break;
         }
 

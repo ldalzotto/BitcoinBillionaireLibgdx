@@ -2,6 +2,7 @@ package com.ldz.component.score;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.ldz.entity.Entity;
 import com.ldz.entity.component.abs.InputComponent;
 import com.ldz.entity.game.entity.ScoreEntity;
@@ -33,10 +34,8 @@ public class ScoreInputComponent extends InputComponent {
     }
 
     @Override
-    public void update(float delta) {
+    public void update(float delta, OrthographicCamera orthographicCamera) {
     }
-
-
 
     @Override
     public void setEntityReference(Entity entityReference) {

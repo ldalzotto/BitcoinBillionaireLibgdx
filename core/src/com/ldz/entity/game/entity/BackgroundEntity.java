@@ -29,7 +29,7 @@ public class BackgroundEntity extends Entity {
 
     public BackgroundEntity(IScreenSendMessage iScreenSendMessage, InputComponent inputComponent, BackgroundGraphicsComponent graphicsComponent, PhysicsComponent physicsComponent) {
         super(iScreenSendMessage, null, graphicsComponent, null);
-        setPosition(new Vector2(0,0));
+        setPosition(new Vector2(50,50));
         graphicsComponent.setEntityReference(this);
     }
 }

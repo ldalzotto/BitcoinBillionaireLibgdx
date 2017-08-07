@@ -1,5 +1,6 @@
 package com.ldz.entity.component.abs;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.ldz.entity.Entity;
 import com.ldz.entity.component.Component;
@@ -11,7 +12,7 @@ public abstract class GraphicsComponent implements Component {
 
     protected Entity entityReference;
 
-    public abstract void update(SpriteBatch spriteBatch, float delta);
+    public abstract void update(SpriteBatch spriteBatch, float delta, OrthographicCamera orthographicCamera);
 
     @Override
     public void setEntityReference(Entity entityReference) {

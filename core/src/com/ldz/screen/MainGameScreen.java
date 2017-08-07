@@ -2,7 +2,6 @@ package com.ldz.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,6 +10,8 @@ import com.ldz.entity.Entity;
 import com.ldz.entity.EntityFactory;
 import com.ldz.entity.message.Message;
 import com.ldz.screen.viewport.GlobalViewport;
+import com.ldz.system.BuyingMenuSystem;
+import com.ldz.system.System;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,14 +25,15 @@ public class MainGameScreen extends GlobalViewport implements Screen, IScreenSen
     private static final String TAG = MainGameScreen.class.getSimpleName();
 
     private SpriteBatch batch = null;
-    private Camera camera;
+    private OrthographicCamera camera;
 
     private static final int MAIN_GAME_SCREEN_HEIGHT = 960;
     private static final int MAIN_GAME_SCREEN_WIDTH = 640;
 
     private Json json;
 
-    private List<Entity> entities;
+    private List<Entity> entities = new ArrayList<>();
+    private List<System> systems = new ArrayList<>();
 
     public MainGameScreen(){
             setupViewport(MAIN_GAME_SCREEN_WIDTH, MAIN_GAME_SCREEN_HEIGHT);
@@ -39,7 +41,6 @@ public class MainGameScreen extends GlobalViewport implements Screen, IScreenSen
             json = new Json();
             batch = new SpriteBatch();
 
-            entities = new ArrayList<Entity>();
         initializeScreen();
         //loadingAssets();
 
@@ -50,6 +51,7 @@ public class MainGameScreen extends GlobalViewport implements Screen, IScreenSen
         batch = new SpriteBatch();
 
         camera = new OrthographicCamera(VIEWPORT.getViewportWidth(), VIEWPORT.getViewportHeight());
+        camera.setToOrtho(false);
         camera.update();
     }
 
@@ -61,7 +63,8 @@ public class MainGameScreen extends GlobalViewport implements Screen, IScreenSen
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
         batch.begin();
-        entities.forEach(entity -> entity.update(delta,batch));
+        entities.forEach(entity -> entity.update(delta,batch,camera));
+        updateAllSystems(delta);
         batch.end();
 
         //Entity garbage collector
@@ -72,6 +75,13 @@ public class MainGameScreen extends GlobalViewport implements Screen, IScreenSen
     private void initializeScreen(){
         entities.add(EntityFactory.getEntity(Entity.EntityType.BACKGROUND, this));
         entities.add(EntityFactory.getEntity(Entity.EntityType.SCORE, this));
+
+
+        systems.add(new BuyingMenuSystem());
+    }
+
+    private void updateAllSystems(float delta){
+        systems.forEach(system -> system.update(delta, this.batch, this.camera));
     }
 
     @Override

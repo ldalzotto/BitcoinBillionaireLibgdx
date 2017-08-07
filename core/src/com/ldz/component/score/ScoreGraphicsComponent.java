@@ -1,7 +1,9 @@
 package com.ldz.component.score;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector3;
 import com.ldz.entity.component.abs.GraphicsComponent;
 import com.ldz.entity.game.entity.ScoreEntity;
 import com.ldz.entity.message.Message;
@@ -19,9 +21,10 @@ public class ScoreGraphicsComponent extends GraphicsComponent {
     }
 
     @Override
-    public void update(SpriteBatch spriteBatch, float delta) {
+    public void update(SpriteBatch spriteBatch, float delta, OrthographicCamera orthographicCamera) {
         ScoreEntity scoreEntity = (ScoreEntity) entityReference;
-        bitmapFont.draw(spriteBatch, scoreEntity.getCurrentScore().toString(), scoreEntity.getPosition().x, scoreEntity.getPosition().y);
+        Vector3 vector3 = orthographicCamera.project(new Vector3(scoreEntity.getPosition().x, scoreEntity.getPosition().y, 0));
+        bitmapFont.draw(spriteBatch, scoreEntity.getCurrentScore().toString(), vector3.x, vector3.y);
     }
 
 }

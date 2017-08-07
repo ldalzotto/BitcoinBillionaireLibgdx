@@ -1,8 +1,10 @@
 package com.ldz.component.background;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector3;
 import com.ldz.entity.component.abs.GraphicsComponent;
 import com.ldz.entity.game.entity.BackgroundEntity;
 import com.ldz.entity.message.Message;
@@ -26,9 +28,10 @@ public class BackgroundGraphicsComponent extends GraphicsComponent {
     }
 
     @Override
-    public void update(SpriteBatch spriteBatch, float delta) {
+    public void update(SpriteBatch spriteBatch, float delta, OrthographicCamera orthographicCamera) {
         BackgroundEntity backgroundEntity = (BackgroundEntity) entityReference;
-        spriteBatch.draw(backgroundTexture, backgroundEntity.getPosition().x, backgroundEntity.getPosition().y);
+        Vector3 vector3 = orthographicCamera.project(new Vector3(backgroundEntity.getPosition().x, backgroundEntity.getPosition().y, 0));
+        spriteBatch.draw(backgroundTexture, vector3.x, vector3.y);
     }
 
 }

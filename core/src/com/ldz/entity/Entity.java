@@ -1,7 +1,9 @@
 package com.ldz.entity;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.ldz.entity.component.Component;
 import com.ldz.entity.component.abs.BehaviorComponent;
@@ -23,7 +25,7 @@ public class Entity {
     private static String TAG;
 
     public enum EntityType{
-        SCORE, BACKGROUND;
+        SCORE, BACKGROUND, BUY_MENU;
     }
 
     private IScreenSendMessage screenReference;
@@ -36,6 +38,8 @@ public class Entity {
     private List<Component> componentList;
 
     private Vector2 position = new Vector2();
+    private Rectangle boundingRectangle = new Rectangle();
+
 
     protected Boolean isDetroyable = false;
 
@@ -71,9 +75,9 @@ public class Entity {
 
     }
 
-    public void update(float delta, SpriteBatch spriteBatch){
+    public void update(float delta, SpriteBatch spriteBatch, OrthographicCamera orthographicCamera){
         if(this.inputComponent != null){
-            inputComponent.update(delta);
+            inputComponent.update(delta, orthographicCamera);
         }
 
         if(this.physicsComponent != null){
@@ -81,7 +85,7 @@ public class Entity {
         }
 
         if(this.graphicsComponent != null){
-            graphicsComponent.update(spriteBatch, delta);
+            graphicsComponent.update(spriteBatch, delta, orthographicCamera);
         }
 
         if(this.behaviorComponents != null){
@@ -115,6 +119,14 @@ public class Entity {
 
     public Vector2 getPosition() {
         return position;
+    }
+
+    public Rectangle getBoundingRectangle() {
+        return boundingRectangle;
+    }
+
+    public void setBoundingRectangle(Rectangle boundingRectangle) {
+        this.boundingRectangle = boundingRectangle;
     }
 
     public IScreenSendMessage getScreenReference() {
