@@ -1,4 +1,4 @@
-package com.ldz.component.buyMenu;
+package com.ldz.component.buyMenuButton;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
@@ -11,7 +11,7 @@ import com.ldz.system.BuyingMenuSystem;
 /**
  * Created by Loic on 07/08/2017.
  */
-public class BuyMenuInputProcessor implements InputProcessor {
+public class BuyMenuButtonInputProcessor implements InputProcessor {
 
     private InputComponent inputComponentReference;
     private OrthographicCamera orthographicCamera;
@@ -42,7 +42,7 @@ public class BuyMenuInputProcessor implements InputProcessor {
                 }
             }
         }
-        BuyingMenuSystem.getInstance().sendMessageToAllEntities(new DisplayBuyMenuMessage(false));
+
         return false;
     }
 
@@ -64,6 +64,10 @@ public class BuyMenuInputProcessor implements InputProcessor {
     @Override
     public boolean scrolled(int amount) {
         return false;
+    }
+
+    public InputComponent getInputComponentReference() {
+        return inputComponentReference;
     }
 
     public void setInputComponentReference(InputComponent inputComponentReference) {

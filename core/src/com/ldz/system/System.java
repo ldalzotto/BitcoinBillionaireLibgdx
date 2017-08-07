@@ -8,6 +8,7 @@ import com.ldz.screen.IScreenSendMessage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Loic on 07/08/2017.
@@ -18,6 +19,9 @@ public abstract class System implements IScreenSendMessage {
 
     public void update(float delta, SpriteBatch spriteBatch, OrthographicCamera orthographicCamera){
         entities.forEach(entity -> entity.update(delta, spriteBatch, orthographicCamera));
+        //Entity garbage collector
+        List<Entity> entitiesToDestroy = entities.stream().filter(Entity::getIsDetroyable).collect(Collectors.toList());
+        entitiesToDestroy.forEach(entities::remove);
     }
 
     public List<Entity> getEntities() {

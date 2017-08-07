@@ -77,7 +77,7 @@ public class MainGameScreen extends GlobalViewport implements Screen, IScreenSen
         entities.add(EntityFactory.getEntity(Entity.EntityType.SCORE, this));
 
 
-        systems.add(new BuyingMenuSystem());
+        systems.add(BuyingMenuSystem.getInstance());
     }
 
     private void updateAllSystems(float delta){

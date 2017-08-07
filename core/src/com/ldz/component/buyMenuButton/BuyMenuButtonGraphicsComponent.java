@@ -1,4 +1,4 @@
-package com.ldz.component.buyMenu;
+package com.ldz.component.buyMenuButton;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -13,12 +13,12 @@ import com.ldz.entity.message.Message;
 /**
  * Created by Loic on 07/08/2017.
  */
-public class BuyMenuGraphicsComponent extends GraphicsComponent {
+public class BuyMenuButtonGraphicsComponent extends GraphicsComponent {
 
-    private Texture menuGraphics;
+    private Texture textButton;
 
-    public BuyMenuGraphicsComponent() {
-        this.menuGraphics = new Texture(Gdx.files.internal("menu/buy_menu.png"));
+    public BuyMenuButtonGraphicsComponent() {
+        this.textButton = new Texture(Gdx.files.internal("menu/buy_button.png"));
     }
 
     @Override
@@ -31,6 +31,6 @@ public class BuyMenuGraphicsComponent extends GraphicsComponent {
         Vector2 entityPosition = this.entityReference.getPosition();
         Rectangle rectangle = this.entityReference.getBoundingRectangle();
         Vector3 vector3 = orthographicCamera.project(new Vector3(rectangle.x, rectangle.y, 0));
-        spriteBatch.draw(menuGraphics, vector3.x, vector3.y, rectangle.width, rectangle.height);
+        spriteBatch.draw(textButton, vector3.x, vector3.y, rectangle.width, rectangle.height);
     }
 }

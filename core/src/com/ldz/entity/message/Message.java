@@ -11,8 +11,8 @@ public abstract class Message {
     protected MESSAGE_TYPE messageType;
     protected List<Object> valuesTransited;
 
-    enum MESSAGE_TYPE {
-        ADD_SCORE;
+    public enum MESSAGE_TYPE {
+        ADD_SCORE, DISPLAY_BUY_MENU;
     }
 
     public Message(MESSAGE_TYPE messageType, Object... valuesTransited) {
@@ -20,8 +20,8 @@ public abstract class Message {
         this.valuesTransited = Arrays.asList(valuesTransited);
     }
 
-    public String getMessageType() {
-        return messageType.toString();
+    public MESSAGE_TYPE getMessageType() {
+        return messageType;
     }
 
     public List<Object> getValuesTransited(){

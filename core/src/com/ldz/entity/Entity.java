@@ -25,7 +25,7 @@ public class Entity {
     private static String TAG;
 
     public enum EntityType{
-        SCORE, BACKGROUND, BUY_MENU;
+        SCORE, BACKGROUND, BUY_MENU_BUTTON, BUY_MENU;
     }
 
     private IScreenSendMessage screenReference;
@@ -57,14 +57,17 @@ public class Entity {
         componentList = new ArrayList<>();
 
         if(this.inputComponent != null){
+            this.inputComponent.setEntityReference(this);
             componentList.add(this.inputComponent);
         }
 
         if(this.physicsComponent != null){
+            this.physicsComponent.setEntityReference(this);
             componentList.add(this.physicsComponent);
         }
 
         if(this.graphicsComponent != null){
+            this.graphicsComponent.setEntityReference(this);
             componentList.add(this.graphicsComponent);
         }
 

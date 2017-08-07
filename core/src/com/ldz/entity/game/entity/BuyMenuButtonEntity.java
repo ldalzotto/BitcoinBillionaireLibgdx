@@ -12,11 +12,11 @@ import com.ldz.screen.IScreenSendMessage;
 /**
  * Created by Loic on 07/08/2017.
  */
-public class BuyMenuEntity extends Entity {
+public class BuyMenuButtonEntity extends Entity {
 
-    public BuyMenuEntity(IScreenSendMessage screen, InputComponent inputComponent, GraphicsComponent graphicsComponent, PhysicsComponent physicsComponent, BehaviorComponent... behaviorComponents) {
+    public BuyMenuButtonEntity(IScreenSendMessage screen, InputComponent inputComponent, GraphicsComponent graphicsComponent, PhysicsComponent physicsComponent, BehaviorComponent... behaviorComponents) {
         super(screen, inputComponent, graphicsComponent, physicsComponent, behaviorComponents);
-        setPosition(new Vector2(100, 100));
-        setBoundingRectangle(new Rectangle(getPosition().x, getPosition().y, 40,90));
+        setPosition(new Vector2(0,0));
+        setBoundingRectangle(new Rectangle(getPosition().x, getPosition().y, 20,20));
     }
 }

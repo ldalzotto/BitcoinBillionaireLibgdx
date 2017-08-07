@@ -29,6 +29,12 @@ public class MyInputMultiplexer extends InputMultiplexer {
         setProcessorWithPriority();
     }
 
+    @Override
+    public void removeProcessor(InputProcessor processor) {
+        super.removeProcessor(processor);
+        setProcessorWithPriority();
+    }
+
     private void setProcessorWithPriority(){
 
         Map<String, InputProcessor> inputProcessorMap = new HashMap<>();

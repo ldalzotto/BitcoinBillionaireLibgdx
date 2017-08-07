@@ -3,8 +3,11 @@
     "name": "BuyMenuInputProcessor",
     "priority": 0
   },{
-    "name": "ScoreInputProcessor",
+    "name": "BuyMenuButtonInputProcessor",
     "priority": 1
+  },{
+    "name": "ScoreInputProcessor",
+    "priority": 2
   }
   ]
 }
