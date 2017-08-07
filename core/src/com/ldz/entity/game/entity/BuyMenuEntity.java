@@ -16,7 +16,7 @@ public class BuyMenuEntity extends Entity {
 
     public BuyMenuEntity(IScreenSendMessage screen, InputComponent inputComponent, GraphicsComponent graphicsComponent, PhysicsComponent physicsComponent, BehaviorComponent... behaviorComponents) {
         super(screen, inputComponent, graphicsComponent, physicsComponent, behaviorComponents);
-        setPosition(new Vector2(50,50));
+        setPosition(new Vector2(0,0));
         setBoundingRectangle(new Rectangle(getPosition().x, getPosition().y, 20,20));
         graphicsComponent.setEntityReference(this);
         inputComponent.setEntityReference(this);

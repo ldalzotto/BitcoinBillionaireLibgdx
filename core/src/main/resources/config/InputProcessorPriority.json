@@ -1,0 +1,10 @@
+{
+  "inputprocessors": [{
+    "name": "BuyMenuInputProcessor",
+    "priority": 0
+  },{
+    "name": "ScoreInputProcessor",
+    "priority": 1
+  }
+  ]
+}

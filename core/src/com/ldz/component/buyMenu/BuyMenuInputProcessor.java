@@ -3,6 +3,7 @@ package com.ldz.component.buyMenu;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Vector3;
 import com.ldz.entity.component.abs.InputComponent;
 
 /**
@@ -32,7 +33,10 @@ public class BuyMenuInputProcessor implements InputProcessor {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if(orthographicCamera != null){
             if(button == Input.Buttons.LEFT){
-                return true;
+                Vector3 unprojected =  orthographicCamera.unproject(new Vector3(screenX, screenY, 0));
+                if(this.inputComponentReference.getEntityReference().getBoundingRectangle().contains(unprojected.x, unprojected.y)){
+                    return true;
+                }
             }
         }
 
