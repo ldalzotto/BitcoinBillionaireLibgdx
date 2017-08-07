@@ -32,5 +32,15 @@ public class BuyMenuGraphicsComponent extends GraphicsComponent {
         Rectangle rectangle = this.entityReference.getBoundingRectangle();
         Vector3 vector3 = orthographicCamera.project(new Vector3(rectangle.x, rectangle.y, 0));
         spriteBatch.draw(menuGraphics, vector3.x, vector3.y, rectangle.width, rectangle.height);
+
+        /**
+         * For debug purpose
+            ShapeRenderer shapeRenderer = new ShapeRenderer();
+            shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+            shapeRenderer.rect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+            shapeRenderer.end();
+         */
+
     }
 }

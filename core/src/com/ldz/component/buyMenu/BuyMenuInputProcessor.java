@@ -37,12 +37,12 @@ public class BuyMenuInputProcessor implements InputProcessor {
             if(button == Input.Buttons.LEFT){
                 Vector3 unprojected =  orthographicCamera.unproject(new Vector3(screenX, screenY, 0));
                 if(this.inputComponentReference.getEntityReference().getBoundingRectangle().contains(unprojected.x, unprojected.y)){
-                    BuyingMenuSystem.getInstance().sendMessageToAllEntities(new DisplayBuyMenuMessage(true));
                     return true;
+                }else {
+                    BuyingMenuSystem.getInstance().sendMessageToAllEntities(new DisplayBuyMenuMessage(false));
                 }
             }
         }
-        BuyingMenuSystem.getInstance().sendMessageToAllEntities(new DisplayBuyMenuMessage(false));
         return false;
     }
 
