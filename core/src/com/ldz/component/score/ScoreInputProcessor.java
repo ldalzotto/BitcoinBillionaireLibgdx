@@ -2,10 +2,9 @@ package com.ldz.component.score;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.utils.Json;
 import com.ldz.entity.Entity;
-import com.ldz.entity.component.Component;
 import com.ldz.entity.game.entity.ScoreEntity;
+import com.ldz.entity.message.AddScoreMessage;
 
 /**
  * Created by Loic on 07/08/2017.
@@ -13,8 +12,6 @@ import com.ldz.entity.game.entity.ScoreEntity;
 public class ScoreInputProcessor implements InputProcessor {
 
     private Entity entityreference;
-
-    private Json json = new Json();
 
     @Override
     public boolean keyDown(int keycode) {
@@ -34,7 +31,7 @@ public class ScoreInputProcessor implements InputProcessor {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if(button == Input.Buttons.LEFT){
-            entityreference.sendMessage(Component.MESSAGE.ADD_SCORE, json.toJson(((ScoreEntity)entityreference).getScorePerClick()));
+            entityreference.sendMessage(new AddScoreMessage(((ScoreEntity)entityreference).getScorePerClick()));
             return true;
         }
         return false;

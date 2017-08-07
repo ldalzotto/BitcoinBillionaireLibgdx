@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.ldz.entity.component.abs.GraphicsComponent;
 import com.ldz.entity.game.entity.BackgroundEntity;
+import com.ldz.entity.message.Message;
 
 /**
  * Created by Loic on 06/08/2017.
@@ -20,7 +21,7 @@ public class BackgroundGraphicsComponent extends GraphicsComponent {
     }
 
     @Override
-    public void receiveMessage(String message) {
+    public void receiveMessage(Message message) {
 
     }
 

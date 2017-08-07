@@ -21,6 +21,7 @@ public class ScoreEntity extends Entity {
     public ScoreEntity(IScreenSendMessage iScreenSendMessage, ScoreInputComponent inputComponent, ScoreGraphicsComponent graphicsComponent, PhysicsComponent physicsComponent,
                        BehaviorComponent scoreAccumulatorComponent) {
         super(iScreenSendMessage, inputComponent, graphicsComponent, physicsComponent, scoreAccumulatorComponent);
+
         setPosition(new Vector2(20,20));
 
         graphicsComponent.setEntityReference(this);

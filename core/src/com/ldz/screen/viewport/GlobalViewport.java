@@ -30,6 +30,13 @@ public abstract class GlobalViewport {
             return viewportHeight;
         }
 
+        public static float getPhysicalWidth() {
+            return physicalWidth;
+        }
+
+        public static float getPhysicalHeight() {
+            return physicalHeight;
+        }
     }
 
     public static void setupViewport(int width, int height){

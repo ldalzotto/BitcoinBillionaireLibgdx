@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Json;
 import com.ldz.entity.Entity;
 import com.ldz.entity.EntityFactory;
-import com.ldz.entity.component.Component;
+import com.ldz.entity.message.Message;
 import com.ldz.screen.viewport.GlobalViewport;
 
 import java.util.ArrayList;
@@ -50,7 +50,6 @@ public class MainGameScreen extends GlobalViewport implements Screen, IScreenSen
         batch = new SpriteBatch();
 
         camera = new OrthographicCamera(VIEWPORT.getViewportWidth(), VIEWPORT.getViewportHeight());
-        camera.position.set(-20f, 70f, -20f);
         camera.update();
     }
 
@@ -101,7 +100,7 @@ public class MainGameScreen extends GlobalViewport implements Screen, IScreenSen
     }
 
     @Override
-    public void sendMessageToAllEntities(Component.MESSAGE messageType, String messageValue) {
-        entities.forEach(entity -> entity.sendMessage(messageType, messageValue));
+    public void sendMessageToAllEntities(Message message) {
+        entities.forEach(entity -> entity.sendMessage(message));
     }
 }

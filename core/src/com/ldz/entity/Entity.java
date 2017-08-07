@@ -8,6 +8,7 @@ import com.ldz.entity.component.abs.BehaviorComponent;
 import com.ldz.entity.component.abs.GraphicsComponent;
 import com.ldz.entity.component.abs.InputComponent;
 import com.ldz.entity.component.abs.PhysicsComponent;
+import com.ldz.entity.message.Message;
 import com.ldz.screen.IScreenSendMessage;
 
 import java.util.ArrayList;
@@ -89,22 +90,14 @@ public class Entity {
 
     }
 
-    public void sendMessage(Component.MESSAGE messageType, String... args){
+    public void sendMessage(Message message){
 
-        StringBuilder fullMessage = new StringBuilder();
-        fullMessage.append(messageType.toString());
 
-        for(String string :
-                args){
-            fullMessage.append(Component.MESSAGE_TOKEN);
-            fullMessage.append(string);
-        }
-
-        Gdx.app.debug(TAG, "Sending message : " + fullMessage);
+        Gdx.app.debug(TAG, "Sending message : " + message.toString());
 
         for (Component component :
                 componentList) {
-            component.receiveMessage(fullMessage.toString());
+            component.receiveMessage(message);
         }
     }
 
