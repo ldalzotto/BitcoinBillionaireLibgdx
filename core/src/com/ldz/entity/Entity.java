@@ -25,7 +25,7 @@ public class Entity {
     private static String TAG;
 
     public enum EntityType{
-        SCORE, BACKGROUND, BUY_MENU_BUTTON, BUY_MENU;
+        SCORE, BACKGROUND, BUY_MENU_BUTTON, BUY_MENU, BUYABLE_OBJECT_DISPLAY, BUY_OBJECT_BUTTON;
     }
 
     private IScreenSendMessage screenReference;

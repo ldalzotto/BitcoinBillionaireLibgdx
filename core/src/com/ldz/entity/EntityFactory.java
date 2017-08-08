@@ -4,15 +4,13 @@ import com.ldz.component.buyMenu.BuyMenuInputComponent;
 import com.ldz.component.buyMenu.BuyMenuInputProcessor;
 import com.ldz.component.buyMenuButton.BuyMenuButtonInputComponent;
 import com.ldz.component.buyMenuButton.BuyMenuButtonInputProcessor;
+import com.ldz.component.graphics.GraphicsWithHighLimitCutComponent;
 import com.ldz.component.graphics.BasicGraphicsComponent;
 import com.ldz.component.score.ScoreGraphicsComponent;
 import com.ldz.component.score.ScoreInputComponent;
 import com.ldz.component.score.ScoreInputProcessor;
 import com.ldz.component.score.ScorePerSecondAccumulatorComponent;
-import com.ldz.entity.game.entity.BackgroundEntity;
-import com.ldz.entity.game.entity.BuyMenuButtonEntity;
-import com.ldz.entity.game.entity.BuyMenuEntity;
-import com.ldz.entity.game.entity.ScoreEntity;
+import com.ldz.entity.game.entity.*;
 import com.ldz.screen.IScreenSendMessage;
 
 /**
@@ -37,6 +35,12 @@ public class EntityFactory {
                 break;
             case BUY_MENU:
                 entity = new BuyMenuEntity(screen, new BuyMenuInputComponent(new BuyMenuInputProcessor()), new BasicGraphicsComponent(), null);
+                break;
+            case BUYABLE_OBJECT_DISPLAY:
+                entity = new BuyableObjectDisplayEntity(screen, null, new GraphicsWithHighLimitCutComponent(), null);
+                break;
+            case BUY_OBJECT_BUTTON:
+                entity = new BuyObjectButtonEntity(screen, null, new GraphicsWithHighLimitCutComponent(), null);
                 break;
         }
 
