@@ -18,7 +18,7 @@ public class ScreenManager {
     private Screen _currentScreenDisplayed;
 
     private ScreenManager() {
-        _mainGameScreen = new MainGameScreen();
+        _mainGameScreen = MainGameScreen.getInstance();
     }
 
     public static ScreenManager getInstance(){

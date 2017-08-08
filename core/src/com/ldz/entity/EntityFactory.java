@@ -4,6 +4,8 @@ import com.ldz.component.buyMenu.BuyMenuInputComponent;
 import com.ldz.component.buyMenu.BuyMenuInputProcessor;
 import com.ldz.component.buyMenuButton.BuyMenuButtonInputComponent;
 import com.ldz.component.buyMenuButton.BuyMenuButtonInputProcessor;
+import com.ldz.component.buyObjectButton.BuyObjectButtonComponent;
+import com.ldz.component.buyObjectButton.BuyObjectInputProcessor;
 import com.ldz.component.graphics.GraphicsWithHighLimitCutComponent;
 import com.ldz.component.graphics.BasicGraphicsComponent;
 import com.ldz.component.score.ScoreGraphicsComponent;
@@ -40,7 +42,7 @@ public class EntityFactory {
                 entity = new BuyableObjectDisplayEntity(screen, null, new GraphicsWithHighLimitCutComponent(), null);
                 break;
             case BUY_OBJECT_BUTTON:
-                entity = new BuyObjectButtonEntity(screen, null, new GraphicsWithHighLimitCutComponent(), null);
+                entity = new BuyObjectButtonEntity(screen, new BuyObjectButtonComponent(new BuyObjectInputProcessor()), new GraphicsWithHighLimitCutComponent(), null);
                 break;
         }
 

@@ -12,7 +12,7 @@ public abstract class Message {
     protected List<Object> valuesTransited;
 
     public enum MESSAGE_TYPE {
-        ADD_SCORE, DISPLAY_BUY_MENU, TOP_DISPLAY_LIMIT;
+        ADD_SCORE, DISPLAY_BUY_MENU, TOP_DISPLAY_LIMIT, BUYING_OBJECT;
     }
 
     public Message(MESSAGE_TYPE messageType, Object... valuesTransited) {

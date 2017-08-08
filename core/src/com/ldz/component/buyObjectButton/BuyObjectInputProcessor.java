@@ -1,20 +1,16 @@
-package com.ldz.component.buyMenu;
+package com.ldz.component.buyObjectButton;
 
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
-import com.ldz.entity.component.abs.InputComponent;
-import com.ldz.entity.message.DisplayBuyMenuMessage;
+import com.ldz.component.input.processor.BasicInputProcessor;
+import com.ldz.entity.game.entity.BuyObjectButtonEntity;
+import com.ldz.entity.message.BuyingObjectMessage;
 import com.ldz.system.BuyingMenuSystem;
 
 /**
- * Created by Loic on 07/08/2017.
+ * Created by Loic on 08/08/2017.
  */
-public class BuyMenuInputProcessor implements InputProcessor {
-
-    private InputComponent inputComponentReference;
-    private OrthographicCamera orthographicCamera;
+public class BuyObjectInputProcessor extends BasicInputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
@@ -37,12 +33,12 @@ public class BuyMenuInputProcessor implements InputProcessor {
             if(button == Input.Buttons.LEFT){
                 Vector3 unprojected =  orthographicCamera.unproject(new Vector3(screenX, screenY, 0));
                 if(this.inputComponentReference.getEntityReference().getBoundingRectangle().contains(unprojected.x, unprojected.y)){
+                    BuyingMenuSystem.getInstance().sendMessageToAllEntities(new BuyingObjectMessage((BuyObjectButtonEntity) this.inputComponentReference.getEntityReference()));
                     return true;
-                }else {
-                   BuyingMenuSystem.getInstance().sendMessageToAllEntities(new DisplayBuyMenuMessage(false));
                 }
             }
         }
+
         return false;
     }
 
@@ -66,11 +62,4 @@ public class BuyMenuInputProcessor implements InputProcessor {
         return false;
     }
 
-    public void setInputComponentReference(InputComponent inputComponentReference) {
-        this.inputComponentReference = inputComponentReference;
-    }
-
-    public void setOrthographicCamera(OrthographicCamera orthographicCamera) {
-        this.orthographicCamera = orthographicCamera;
-    }
 }

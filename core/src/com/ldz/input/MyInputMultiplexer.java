@@ -5,8 +5,8 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.ldz.config.input.InputMultiplexerConfig;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Loic on 07/08/2017.
@@ -37,20 +37,22 @@ public class MyInputMultiplexer extends InputMultiplexer {
 
     private void setProcessorWithPriority(){
 
-        Map<String, InputProcessor> inputProcessorMap = new HashMap<>();
+        List<InputProcessor> inputProcessors = new ArrayList<>();
 
         for (InputProcessor inputProcessor :
                 this.getProcessors()) {
-            inputProcessorMap.put(inputProcessor.getClass().getSimpleName(), inputProcessor);
+            inputProcessors.add(inputProcessor);
         }
 
         //remove all processor
         this.clear();
 
         InputMultiplexerConfig.getInstance().getInputProcessors().getInputprocessors().forEach(inputProcessorDetail -> {
-            if(inputProcessorMap.get(inputProcessorDetail.getName()) != null){
-                super.addProcessor(inputProcessorMap.get(inputProcessorDetail.getName()));
-            }
+            inputProcessors.forEach(inputProcessor -> {
+                if(inputProcessor.getClass().getSimpleName().equals(inputProcessorDetail.getName())){
+                    super.addProcessor(inputProcessor);
+                }
+            });
         });
     }
 

@@ -5,8 +5,14 @@ import com.ldz.entity.EntityFactory;
 import com.ldz.entity.game.entity.BuyMenuEntity;
 import com.ldz.entity.game.entity.BuyObjectButtonEntity;
 import com.ldz.entity.game.entity.BuyableObjectDisplayEntity;
+import com.ldz.entity.message.AddScoreMessage;
+import com.ldz.entity.message.BuyingObjectMessage;
 import com.ldz.entity.message.Message;
 import com.ldz.entity.message.TopDisplayLimitMessage;
+import com.ldz.screen.MainGameScreen;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Loic on 07/08/2017.
@@ -22,6 +28,8 @@ public class BuyingMenuSystem extends System {
         return instance;
     }
 
+    private Map<BuyObjectButtonEntity, BuyableObjectDisplayEntity> buyableObjectButtonToDisplay = new HashMap<>();
+
     public BuyingMenuSystem() {
         initEntitys();
     }
@@ -34,6 +42,7 @@ public class BuyingMenuSystem extends System {
     public void sendMessageToAllEntities(Message message) {
         if(message.getMessageType().equals(Message.MESSAGE_TYPE.DISPLAY_BUY_MENU)){
                 //add related entity
+            buyableObjectButtonToDisplay.clear();
             BuyMenuEntity buyMenuEntity = (BuyMenuEntity)EntityFactory.getEntity(Entity.EntityType.BUY_MENU, this);
             entities.add(buyMenuEntity);
 
@@ -45,8 +54,19 @@ public class BuyingMenuSystem extends System {
                 BuyObjectButtonEntity entity1 = (BuyObjectButtonEntity)EntityFactory.getEntity(Entity.EntityType.BUY_OBJECT_BUTTON, this);
                 entity1.initializeEntityFromPosition(entity.getPosition());
                 entities.add(entity1);
+                buyableObjectButtonToDisplay.put(entity1, entity);
             });
             sendMessageToAllEntities(new TopDisplayLimitMessage(buyMenuEntity.getHighestPointOrdinate()));
+        } else if(message.getMessageType().equals(Message.MESSAGE_TYPE.BUYING_OBJECT)){
+            BuyingObjectMessage buyingObjectMessage =  (BuyingObjectMessage) message;
+            //check which object is bought
+            Entity entity = this.buyableObjectButtonToDisplay.get(buyingObjectMessage.getBuyObjectButtonEntity());
+            if(entity != null){
+                //Sending message to score
+                BuyableObjectDisplayEntity buyingObjectDisplayEntity = (BuyableObjectDisplayEntity) entity;
+                MainGameScreen.getInstance().sendMessageToAllEntities(new AddScoreMessage(buyingObjectDisplayEntity.getCostBonusPerSecond()));
+            }
+
         }
 
 

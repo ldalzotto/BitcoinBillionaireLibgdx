@@ -24,6 +24,15 @@ public class MainGameScreen extends GlobalViewport implements Screen, IScreenSen
 
     private static final String TAG = MainGameScreen.class.getSimpleName();
 
+    private static MainGameScreen instance = null;
+
+    public static MainGameScreen getInstance(){
+        if(instance==null){
+            instance = new MainGameScreen();
+        }
+        return instance;
+    }
+
     private SpriteBatch batch = null;
     private OrthographicCamera camera;
 
