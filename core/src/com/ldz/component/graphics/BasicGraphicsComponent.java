@@ -1,6 +1,7 @@
-package com.ldz.component.buyMenu;
+package com.ldz.component.graphics;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,14 +12,15 @@ import com.ldz.entity.component.abs.GraphicsComponent;
 import com.ldz.entity.message.Message;
 
 /**
- * Created by Loic on 07/08/2017.
+ * Created by ldalzotto on 08/08/2017.
  */
-public class BuyMenuGraphicsComponent extends GraphicsComponent {
+public class BasicGraphicsComponent extends GraphicsComponent {
 
-    private Texture menuGraphics;
+    private Texture texture;
 
-    public BuyMenuGraphicsComponent() {
-        this.menuGraphics = new Texture(Gdx.files.internal("menu/buy_menu.png"));
+    public BasicGraphicsComponent(FileHandle fileToLoad) {
+        super();
+        texture = new Texture(fileToLoad);
     }
 
     @Override
@@ -31,16 +33,6 @@ public class BuyMenuGraphicsComponent extends GraphicsComponent {
         Vector2 entityPosition = this.entityReference.getPosition();
         Rectangle rectangle = this.entityReference.getBoundingRectangle();
         Vector3 vector3 = orthographicCamera.project(new Vector3(rectangle.x, rectangle.y, 0));
-        spriteBatch.draw(menuGraphics, vector3.x, vector3.y, rectangle.width, rectangle.height);
-
-        /**
-         * For debug purpose
-            ShapeRenderer shapeRenderer = new ShapeRenderer();
-            shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
-            shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-            shapeRenderer.rect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-            shapeRenderer.end();
-         */
-
+        spriteBatch.draw(texture, vector3.x, vector3.y, rectangle.width, rectangle.height);
     }
 }

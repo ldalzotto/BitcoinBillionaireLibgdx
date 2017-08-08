@@ -3,6 +3,7 @@ package com.ldz.entity.game.entity;
 import com.badlogic.gdx.math.Vector2;
 import com.ldz.component.background.BackgroundGraphicsComponent;
 import com.ldz.entity.Entity;
+import com.ldz.entity.component.abs.GraphicsComponent;
 import com.ldz.entity.component.abs.InputComponent;
 import com.ldz.entity.component.abs.PhysicsComponent;
 import com.ldz.screen.IScreenSendMessage;
@@ -27,8 +28,8 @@ Entity -down-> BackgroundGraphicsComponent
  */
 public class BackgroundEntity extends Entity {
 
-    public BackgroundEntity(IScreenSendMessage iScreenSendMessage, InputComponent inputComponent, BackgroundGraphicsComponent graphicsComponent, PhysicsComponent physicsComponent) {
+    public BackgroundEntity(IScreenSendMessage iScreenSendMessage, InputComponent inputComponent, GraphicsComponent graphicsComponent, PhysicsComponent physicsComponent) {
         super(iScreenSendMessage, null, graphicsComponent, null);
-        setPosition(new Vector2(50,50));
+        setPosition(new Vector2(50, 50));
     }
 }
