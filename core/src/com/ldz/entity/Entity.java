@@ -135,4 +135,28 @@ public class Entity {
     public IScreenSendMessage getScreenReference() {
         return screenReference;
     }
+
+    public InputComponent getInputComponent() {
+        return inputComponent;
+    }
+
+    public void setInputComponent(InputComponent inputComponent) {
+        this.inputComponent = inputComponent;
+    }
+
+    public GraphicsComponent getGraphicsComponent() {
+        return graphicsComponent;
+    }
+
+    public void setGraphicsComponent(GraphicsComponent graphicsComponent) {
+        this.graphicsComponent = graphicsComponent;
+    }
+
+    public PhysicsComponent getPhysicsComponent() {
+        return physicsComponent;
+    }
+
+    public void setPhysicsComponent(PhysicsComponent physicsComponent) {
+        this.physicsComponent = physicsComponent;
+    }
 }

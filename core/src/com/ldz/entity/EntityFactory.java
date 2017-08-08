@@ -1,12 +1,7 @@
 package com.ldz.entity;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
-import com.ldz.component.background.BackgroundGraphicsComponent;
-import com.ldz.component.buyMenu.BuyMenuGraphicsComponent;
 import com.ldz.component.buyMenu.BuyMenuInputComponent;
 import com.ldz.component.buyMenu.BuyMenuInputProcessor;
-import com.ldz.component.buyMenuButton.BuyMenuButtonGraphicsComponent;
 import com.ldz.component.buyMenuButton.BuyMenuButtonInputComponent;
 import com.ldz.component.buyMenuButton.BuyMenuButtonInputProcessor;
 import com.ldz.component.graphics.BasicGraphicsComponent;
@@ -35,13 +30,13 @@ public class EntityFactory {
                         new ScorePerSecondAccumulatorComponent());
                 break;
             case BACKGROUND:
-                entity = new BackgroundEntity(screen, null, new BasicGraphicsComponent(Gdx.files.classpath("background/brick.png")), null);
+                entity = new BackgroundEntity(screen, null, new BasicGraphicsComponent(), null);
                 break;
             case BUY_MENU_BUTTON:
-                entity = new BuyMenuButtonEntity(screen, new BuyMenuButtonInputComponent(new BuyMenuButtonInputProcessor()), new BasicGraphicsComponent(Gdx.files.internal("menu/buy_button.png")), null);
+                entity = new BuyMenuButtonEntity(screen, new BuyMenuButtonInputComponent(new BuyMenuButtonInputProcessor()), new BasicGraphicsComponent(), null);
                 break;
             case BUY_MENU:
-                entity = new BuyMenuEntity(screen, new BuyMenuInputComponent(new BuyMenuInputProcessor()), new BasicGraphicsComponent(Gdx.files.internal("menu/buy_menu.png")), null);
+                entity = new BuyMenuEntity(screen, new BuyMenuInputComponent(new BuyMenuInputProcessor()), new BasicGraphicsComponent(), null);
                 break;
         }
 

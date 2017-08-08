@@ -1,7 +1,5 @@
 package com.ldz.component.graphics;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -18,14 +16,21 @@ public class BasicGraphicsComponent extends GraphicsComponent {
 
     private Texture texture;
 
-    public BasicGraphicsComponent(FileHandle fileToLoad) {
+    public BasicGraphicsComponent() {
         super();
-        texture = new Texture(fileToLoad);
     }
 
     @Override
     public void receiveMessage(Message message) {
 
+    }
+
+    public Texture getTexture() {
+        return texture;
+    }
+
+    public void setTexture(Texture texture) {
+        this.texture = texture;
     }
 
     @Override
