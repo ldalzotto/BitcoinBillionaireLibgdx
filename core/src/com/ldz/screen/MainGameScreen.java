@@ -51,8 +51,6 @@ public class MainGameScreen extends GlobalViewport implements Screen, IScreenSen
         batch = new SpriteBatch();
 
         initializeScreen();
-        //loadingAssets();
-
     }
 
     @Override

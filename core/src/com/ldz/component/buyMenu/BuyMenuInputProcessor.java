@@ -1,20 +1,15 @@
 package com.ldz.component.buyMenu;
 
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
-import com.ldz.entity.component.abs.InputComponent;
+import com.ldz.component.input.processor.BasicInputProcessor;
 import com.ldz.entity.message.DisplayBuyMenuMessage;
 import com.ldz.system.BuyingMenuSystem;
 
 /**
  * Created by Loic on 07/08/2017.
  */
-public class BuyMenuInputProcessor implements InputProcessor {
-
-    private InputComponent inputComponentReference;
-    private OrthographicCamera orthographicCamera;
+public class BuyMenuInputProcessor extends BasicInputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
@@ -66,11 +61,4 @@ public class BuyMenuInputProcessor implements InputProcessor {
         return false;
     }
 
-    public void setInputComponentReference(InputComponent inputComponentReference) {
-        this.inputComponentReference = inputComponentReference;
-    }
-
-    public void setOrthographicCamera(OrthographicCamera orthographicCamera) {
-        this.orthographicCamera = orthographicCamera;
-    }
 }
