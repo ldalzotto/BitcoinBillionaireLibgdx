@@ -19,7 +19,7 @@ public class BuyMenuButtonEntity extends Entity {
     public BuyMenuButtonEntity(IScreenSendMessage screen, InputComponent inputComponent, BasicGraphicsComponent graphicsComponent, PhysicsComponent physicsComponent, BehaviorComponent... behaviorComponents) {
         super(screen, inputComponent, graphicsComponent, physicsComponent, behaviorComponents);
         setPosition(new Vector2(0, 0));
-        setBoundingRectangle(new Rectangle(getPosition().x, getPosition().y, 20, 20));
+        setBoundingRectangle(new Rectangle(getPosition().x, getPosition().y, 70, 70));
         ((BasicGraphicsComponent) this.getGraphicsComponent()).setTexture(new Texture(Gdx.files.internal("menu/buy_button.png")));
     }
 }

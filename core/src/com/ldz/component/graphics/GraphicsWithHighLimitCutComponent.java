@@ -38,11 +38,16 @@ public class GraphicsWithHighLimitCutComponent extends GraphicsComponent {
         Rectangle rectangle = this.entityReference.getBoundingRectangle();
         Vector3 vector3 = orthographicCamera.project(new Vector3(rectangle.x, rectangle.y, 0));
 
+        Vector2 oppositePoint = new Vector2(entityPosition.x + Math.abs(rectangle.width), entityPosition.y + Math.abs(rectangle.height));
+        Vector3 oppositePointProjected = orthographicCamera.project(new Vector3(oppositePoint.x, oppositePoint.y,0));
+
         if((entityPosition.y + rectangle.height) > highLimitDisplay){
-            TextureRegion textureRegion = new TextureRegion(texture, (int)rectangle.width, (int)(rectangle.height-((entityPosition.y + rectangle.height) - highLimitDisplay)));
+            int projectedWidth = (int)Math.abs(oppositePointProjected.x - oppositePoint.x);
+            int projectedHeight = (int)Math.abs(oppositePointProjected.y - oppositePoint.y);
+            TextureRegion textureRegion = new TextureRegion(texture, projectedWidth, (int)(projectedHeight-((entityPosition.y + projectedHeight) - highLimitDisplay)));
             spriteBatch.draw(textureRegion, vector3.x, vector3.y);
         }else {
-            spriteBatch.draw(texture, vector3.x, vector3.y, rectangle.width, rectangle.height);
+            spriteBatch.draw(texture, vector3.x, vector3.y, (oppositePointProjected.x - vector3.x), (oppositePointProjected.y - vector3.y));
         }
 
     }

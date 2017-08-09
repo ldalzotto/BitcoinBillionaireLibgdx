@@ -32,5 +32,6 @@ javadoc {
             into "$buildDir/docs/javadoc/com/ldz"
             includes = ['**/doc-files/']
         }
+        //delete fileTree(dir: 'src/com/ldz' , include: '**/doc-files/')
     }
 }

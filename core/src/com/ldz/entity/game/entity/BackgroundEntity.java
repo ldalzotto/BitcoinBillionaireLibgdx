@@ -18,13 +18,14 @@ import com.ldz.screen.IScreenSendMessage;
  * <img src="doc-files/background-entity.png" alt="BitcoineBillionaire main">
  */
 /* @startuml doc-files/background-entity.png
-class Entity {
-    + position
-}
-class BackgroundGraphicsComponent {
-    + backgroundTexture
-}
-Entity -down-> BackgroundGraphicsComponent
+    class BackgroundEntity {
+        + position
+        + boundingRectangle
+    }
+    class BasicGraphicsComponent {
+        + texture
+    }
+    BackgroundEntity -down-> BasicGraphicsComponent
 @enduml
  */
 public class BackgroundEntity extends Entity {

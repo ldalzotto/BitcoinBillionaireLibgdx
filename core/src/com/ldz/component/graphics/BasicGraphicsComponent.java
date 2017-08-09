@@ -37,7 +37,12 @@ public class BasicGraphicsComponent extends GraphicsComponent {
     public void update(SpriteBatch spriteBatch, float delta, OrthographicCamera orthographicCamera) {
         Vector2 entityPosition = this.entityReference.getPosition();
         Rectangle rectangle = this.entityReference.getBoundingRectangle();
+
+        Vector2 oppositePoint = new Vector2(entityPosition.x + Math.abs(rectangle.width), entityPosition.y + Math.abs(rectangle.height));
+
         Vector3 vector3 = orthographicCamera.project(new Vector3(rectangle.x, rectangle.y, 0));
-        spriteBatch.draw(texture, vector3.x, vector3.y, rectangle.width, rectangle.height);
+        Vector3 oppositePointProjected = orthographicCamera.project(new Vector3(oppositePoint.x, oppositePoint.y,0));
+
+        spriteBatch.draw(texture, vector3.x, vector3.y, (oppositePointProjected.x - vector3.x), (oppositePointProjected.y - vector3.y));
     }
 }

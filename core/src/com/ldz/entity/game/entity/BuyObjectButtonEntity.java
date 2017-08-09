@@ -24,7 +24,7 @@ public class BuyObjectButtonEntity extends Entity {
 
     public void initializeEntityFromPosition(Vector2 position){
         this.setPosition(position);
-        this.setBoundingRectangle(new Rectangle(position.x, position.y, 30, 30));
+        this.setBoundingRectangle(new Rectangle(position.x, position.y, 60, 60));
     }
 
 
