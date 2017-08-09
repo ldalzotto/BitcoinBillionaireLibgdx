@@ -12,7 +12,7 @@ public abstract class Message {
     protected List<Object> valuesTransited;
 
     public enum MESSAGE_TYPE {
-        ADD_SCORE, DISPLAY_BUY_MENU, TOP_DISPLAY_LIMIT, BUYING_OBJECT;
+        ADD_SCORE, DISPLAY_BUY_MENU, TOP_DISPLAY_LIMIT, BUYING_OBJECT, ADD_SCORE_PER_SECOND;
     }
 
     public Message(MESSAGE_TYPE messageType, Object... valuesTransited) {
@@ -24,7 +24,7 @@ public abstract class Message {
         return messageType;
     }
 
-    public List<Object> getValuesTransited(){
+    public List<Object> getValuesTransited() {
         return valuesTransited;
     }
 

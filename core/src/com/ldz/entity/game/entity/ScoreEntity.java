@@ -22,7 +22,7 @@ public class ScoreEntity extends Entity {
                        BehaviorComponent scoreAccumulatorComponent) {
         super(iScreenSendMessage, inputComponent, graphicsComponent, physicsComponent, scoreAccumulatorComponent);
 
-        setPosition(new Vector2(20,20));
+        setPosition(new Vector2(20, 20));
 
         graphicsComponent.setEntityReference(this);
         inputComponent.setEntityReference(this);
@@ -39,7 +39,7 @@ public class ScoreEntity extends Entity {
         this.currentScore = currentScore;
     }
 
-    public void addScore(Integer scoreToAdd){
+    public void addScore(Integer scoreToAdd) {
         this.currentScore += scoreToAdd;
     }
 
@@ -49,5 +49,9 @@ public class ScoreEntity extends Entity {
 
     public Integer getScorePerSecond() {
         return scorePerSecond;
+    }
+
+    public void addToScorePerSecond(Integer scorePerSecondToAdd) {
+        this.scorePerSecond += scorePerSecondToAdd;
     }
 }

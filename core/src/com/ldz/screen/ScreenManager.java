@@ -9,27 +9,24 @@ public class ScreenManager {
 
     private static ScreenManager _instance = null;
 
-    protected MainGameScreen _mainGameScreen;
-
-    public enum ScreenType{
+    public enum ScreenType {
         MAIN_GAME_SCREEN;
     }
 
     private Screen _currentScreenDisplayed;
 
     private ScreenManager() {
-        _mainGameScreen = MainGameScreen.getInstance();
     }
 
-    public static ScreenManager getInstance(){
-        if(_instance == null){
+    public static ScreenManager getInstance() {
+        if (_instance == null) {
             _instance = new ScreenManager();
         }
         return _instance;
     }
 
-    public void setScreen(ScreenType screenType){
-        switch (screenType){
+    public void setScreen(ScreenType screenType) {
+        switch (screenType) {
             case MAIN_GAME_SCREEN:
                 _currentScreenDisplayed = getScreen(screenType);
                 break;
@@ -39,17 +36,17 @@ public class ScreenManager {
         }
     }
 
-    public Screen getScreen(ScreenType screenType){
-        switch (screenType){
+    public Screen getScreen(ScreenType screenType) {
+        switch (screenType) {
             case MAIN_GAME_SCREEN:
-                return _mainGameScreen;
+                return MainGameScreen.getInstance();
             default:
                 return null;
         }
     }
 
-    public void dispose(){
-        _mainGameScreen.dispose();
+    public void dispose() {
+        MainGameScreen.getInstance().dispose();
     }
 
     public Screen get_currentScreenDisplayed() {

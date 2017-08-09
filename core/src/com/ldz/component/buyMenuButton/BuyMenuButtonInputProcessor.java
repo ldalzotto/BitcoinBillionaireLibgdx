@@ -33,10 +33,10 @@ public class BuyMenuButtonInputProcessor implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        if(orthographicCamera != null){
-            if(button == Input.Buttons.LEFT){
-                Vector3 unprojected =  orthographicCamera.unproject(new Vector3(screenX, screenY, 0));
-                if(this.inputComponentReference.getEntityReference().getBoundingRectangle().contains(unprojected.x, unprojected.y)){
+        if (orthographicCamera != null) {
+            if (button == Input.Buttons.LEFT) {
+                Vector3 unprojected = orthographicCamera.unproject(new Vector3(screenX, screenY, 0));
+                if (this.inputComponentReference.getEntityReference().getBoundingRectangle().contains(unprojected.x, unprojected.y)) {
                     BuyingMenuSystem.getInstance().sendMessageToAllEntities(new DisplayBuyMenuMessage(true));
                     return true;
                 }

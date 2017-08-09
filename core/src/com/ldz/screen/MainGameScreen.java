@@ -26,8 +26,8 @@ public class MainGameScreen extends GlobalViewport implements Screen, IScreenSen
 
     private static MainGameScreen instance = null;
 
-    public static MainGameScreen getInstance(){
-        if(instance==null){
+    public static MainGameScreen getInstance() {
+        if (instance == null) {
             instance = new MainGameScreen();
         }
         return instance;
@@ -44,11 +44,11 @@ public class MainGameScreen extends GlobalViewport implements Screen, IScreenSen
     private List<Entity> entities = new ArrayList<>();
     private List<System> systems = new ArrayList<>();
 
-    public MainGameScreen(){
-            setupViewport(MAIN_GAME_SCREEN_WIDTH, MAIN_GAME_SCREEN_HEIGHT);
+    public MainGameScreen() {
+        setupViewport(MAIN_GAME_SCREEN_WIDTH, MAIN_GAME_SCREEN_HEIGHT);
 
-            json = new Json();
-            batch = new SpriteBatch();
+        json = new Json();
+        batch = new SpriteBatch();
 
         initializeScreen();
         //loadingAssets();
@@ -60,7 +60,7 @@ public class MainGameScreen extends GlobalViewport implements Screen, IScreenSen
         batch = new SpriteBatch();
 
         camera = new OrthographicCamera(VIEWPORT.getViewportWidth(), VIEWPORT.getViewportHeight());
-        camera.setToOrtho(false);
+        camera.setToOrtho(false, VIEWPORT.getViewportWidth(), VIEWPORT.getViewportHeight());
         camera.update();
     }
 
@@ -68,11 +68,11 @@ public class MainGameScreen extends GlobalViewport implements Screen, IScreenSen
     public void render(float delta) {
         camera.update();
 
-        Gdx.gl.glViewport(0, 0, (int)VIEWPORT.getViewportWidth(), (int)VIEWPORT.getViewportHeight());
+        //Gdx.gl.glViewport(0, 0, (int) VIEWPORT.getViewportWidth(), (int) VIEWPORT.getViewportHeight());
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
         batch.begin();
-        entities.forEach(entity -> entity.update(delta,batch,camera));
+        entities.forEach(entity -> entity.update(delta, batch, camera));
         updateAllSystems(delta);
         batch.end();
 
@@ -81,7 +81,7 @@ public class MainGameScreen extends GlobalViewport implements Screen, IScreenSen
         entitiesToDestroy.forEach(entities::remove);
     }
 
-    private void initializeScreen(){
+    private void initializeScreen() {
         entities.add(EntityFactory.getEntity(Entity.EntityType.BACKGROUND, this));
         entities.add(EntityFactory.getEntity(Entity.EntityType.SCORE, this));
 
@@ -89,7 +89,7 @@ public class MainGameScreen extends GlobalViewport implements Screen, IScreenSen
         systems.add(BuyingMenuSystem.getInstance());
     }
 
-    private void updateAllSystems(float delta){
+    private void updateAllSystems(float delta) {
         systems.forEach(system -> system.update(delta, this.batch, this.camera));
     }
 

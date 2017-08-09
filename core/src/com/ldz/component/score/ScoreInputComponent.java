@@ -29,7 +29,7 @@ public class ScoreInputComponent extends InputComponent {
             AddScoreMessage addScoreMessage = (AddScoreMessage)message;
             Gdx.app.debug(TAG, "Message " + addScoreMessage.toString() + " reveived.");
             Integer scoreToadd = addScoreMessage.getScore();
-            ((ScoreEntity)entityReference).addScore(scoreToadd);
+            ((ScoreEntity)entityReference).addScore(scoreToadd);    
         }
     }
 

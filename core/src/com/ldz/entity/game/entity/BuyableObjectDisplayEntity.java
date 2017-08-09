@@ -26,9 +26,10 @@ public class BuyableObjectDisplayEntity extends Entity {
     public BuyableObjectDisplayEntity(IScreenSendMessage screen, InputComponent inputComponent, GraphicsWithHighLimitCutComponent graphicsComponent, PhysicsComponent physicsComponent, BehaviorComponent... behaviorComponents) {
         super(screen, inputComponent, graphicsComponent, physicsComponent, behaviorComponents);
         ((GraphicsWithHighLimitCutComponent) this.getGraphicsComponent()).setTexture(new Texture(Gdx.files.internal("menu/buyable_object_display.png")));
+        this.costBonusPerSecond = 4;
     }
 
-    public void initializeEntityFromPosition(Vector2 position){
+    public void initializeEntityFromPosition(Vector2 position) {
         this.setPosition(position);
         this.setBoundingRectangle(new Rectangle(position.x, position.y, DISPLAY_WIDTH, DISPLAY_HEIGHT));
     }
